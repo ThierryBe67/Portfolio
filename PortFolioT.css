@@ -1,0 +1,504 @@
+/*================ VARIABLES CSS ==========*/
+
+:root {
+    --header-height: 3rem;
+
+    /*======= Couleurs =======*/
+    --hue-color: 210;
+    --hue-alt: 230;
+    --hue-accent: 190;
+
+    /*========= Mode de couleur HSL =========*/
+    --first-color: hsl(var(--hue-color), 75%, 40%); /* Bleu principal */
+    --first-color-second: hsl(var(--hue-alt), 70%, 55%); /* Bleu violet clair */
+    --first-color-alt: hsl(var(--hue-accent), 70%, 45%); /* Bleu cyan */
+    --first-color-lighter: hsl(var(--hue-alt), 75%, 65%); /* Bleu violet plus clair */
+    --title-color: hsl(var(--hue-color), 85%, 30%); /* Bleu foncé pour les titres */
+    --text-color: hsl(var(--hue-alt), 30%, 25%); /* Bleu violet foncé pour le texte */
+    --text-color-light: hsl(var(--hue-accent), 40%, 60%); /* Cyan moyen */
+    --input-color: hsl(var(--hue-alt), 60%, 55%); /* Bleu violet pour les inputs */
+    --body-color: hsl(var(--hue-color), 60%, 97%); /* Fond très clair */
+    --container-color: #fff;
+    --scroll-bar-color: hsl(var(--hue-accent), 70%, 85%); /* Cyan clair */
+    --scroll-thumb-color: hsl(var(--hue-alt), 70%, 65%); /* Bleu violet */
+    --theme-icon-color: hsl(var(--hue-color), 70%, 45%); /* Couleur plus claire pour l'icône en mode clair */
+
+    /*========= Police et typographie ===========*/
+    --body-font: "Poppins", sans-serif; 
+    --big-font-size: 2rem;
+    --h1-font-size: 1.5rem;
+    --h2-font-size: 1.25rem;
+    --h3-font-size: 1.125rem;   
+    --normal-font-size: 0.938rem;
+    --small-font-size: 0.813rem;
+    --smaller-font-size: 0.75rem;
+
+    /*=========== Poids de police ==========*/
+    --font-medium: 500;
+    --font-semi-bold: 600;
+
+    /*============ Marge inférieure ===========*/
+    --mb-0-25: 0.25rem;
+    --mb-0-5: 0.5rem;
+    --mb-0-75: 0.75rem;
+    --mb-1: 1rem;
+    --mb-1-5: 1.5rem;
+    --mb-2: 2rem;
+    --mb-2-5: 2.5rem;
+    --mb-3: 3rem;
+
+    /*============== z index =============*/
+    --z-tooltip: 10;
+    --z-fixed: 100;
+    --z-modal: 1000;
+}
+
+/* Taille de police pour les appareils plus grands */
+@media screen and (min-width: 968px) {
+    :root {
+        --big-font-size: 3rem;
+        --h1-font-size: 2.25rem;
+        --h2-font-size: 1.5rem;
+        --h3-font-size: 1.25rem;
+        --normal-font-size: 1rem;
+        --small-font-size: 0.875rem;
+        --smaller-font-size: 0.813rem;
+        transition: 0.3s; /* Ajout de la transition */
+    }
+}
+
+/*================= Variables Thème Sombre ===============*/
+body.dark-theme {
+    --first-color: hsl(var(--hue-color), 70%, 40%); /* Bleu principal */
+    --first-color-second: hsl(var(--hue-alt), 65%, 25%); /* Bleu violet sombre */
+    --first-color-alt: hsl(var(--hue-accent), 70%, 35%); /* Cyan sombre */
+    --first-color-lighter: hsl(var(--hue-alt), 70%, 40%); /* Bleu violet moyen */
+    --title-color: hsl(var(--hue-accent), 80%, 90%); /* Cyan très clair pour les titres */
+    --text-color: hsl(var(--hue-alt), 30%, 85%); /* Bleu violet clair pour le texte */
+    --text-color-light: hsl(var(--hue-accent), 40%, 70%); /* Cyan moyen */
+    --input-color: hsl(var(--hue-alt), 50%, 30%); /* Bleu violet foncé */
+    --body-color: hsl(var(--hue-color), 70%, 12%); /* Fond très sombre */
+    --container-color: hsl(var(--hue-alt), 70%, 18%); /* Conteneur sombre */
+    --scroll-bar-color: hsl(var(--hue-accent), 60%, 35%); /* Cyan sombre */
+    --scroll-thumb-color: hsl(var(--hue-alt), 70%, 45%); /* Bleu violet moyen */
+    --theme-icon-color: var(--text-color); /* Utilise la couleur du texte en mode sombre */
+}
+
+/*================= Base ===============*/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html {
+    scroll-behavior: smooth; /* Comportement de défilement fluide */
+}
+
+body {
+    margin: 0 0 var(--header-height) 0; /* Marge inférieure pour le header */
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s; /* Transition pour le fond et la couleur du texte */
+}
+
+.header {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: var(--z-fixed);
+}
+
+h1, h2, h3, h4, p, ul {
+    color: var(--title-color);
+    font-weight: var(--font-semi-bold);
+    transition: color 0.3s; /* Transition pour la couleur */
+}
+
+.nav__btns {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+  
+
+.button.button--flex {
+    display: flex;
+    justify-content: center; /* Centre horizontalement */
+    align-items: center; /* Centre verticalement */
+    margin-left: auto;
+    margin-right: auto;
+}
+.change-theme {
+    font-size: 1.25rem;
+    color: #fff; /* Blanc par défaut */
+    transition: 0.3s;
+    cursor: pointer;
+}
+  
+.change-theme:hover {
+    color: var(--first-color-alt);
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+a {
+    text-decoration: none;
+}
+
+header p {
+    font-size: 1.5em;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3em;
+    text-align: center;
+}
+
+.menu {
+    position: fixed;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 95%;
+    padding: 0.2rem;
+    border-radius: 15px;
+    z-index: var(--z-fixed);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    background-color: var(--input-color);
+}
+
+.menu a {
+    font-size: 0.8rem;
+    padding: 8px 5px;
+    margin: 3px;
+    display: inline-block;
+    font-size: var(--normal-font-size);
+    color: #fff;
+    text-align: center;
+    text-decoration: none;
+    transition: background-color 0.5s, color 0.5s; /* Transition pour le survol */
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.menu a:hover {
+    background-color: var(--input-color);
+    color: var(--scroll-bar-color);
+    padding: 10px 10px;
+    font-size: 25px;
+    transition: cubic-bezier(0.645, 0.045, 0.355, 1) 0.5s;
+}
+
+/* Media Queries */
+/* Pour les très très petits écrans */
+@media screen and (max-width: 280px) {
+    .menu {
+        width: 98%;
+        padding: 0.15rem;
+    }
+
+    .menu a {
+        font-size: 0.7rem;
+        padding: 5px 3px;
+        margin: 2px;
+    }
+
+    .nav__btns {
+        margin-right: 5px;
+    }
+
+    main {
+        width: 98%;
+        margin-top: 160px;
+    }
+
+    .change-theme {
+        font-size: 1rem;
+    }
+}
+
+/* Pour les très petits écrans */
+@media screen and (min-width: 281px) and (max-width: 350px) {
+    .menu {
+        width: 95%;
+        padding: 0.2rem;
+    }
+
+    .menu a {
+        font-size: 0.75rem;
+        padding: 6px 4px;
+    }
+
+    main {
+        width: 95%;
+        margin-top: 150px;
+    }
+}
+
+/* Pour les petits écrans */
+@media screen and (min-width: 351px) and (max-width: 480px) {
+    .menu {
+        width: 92%;
+    }
+
+    .menu a {
+        font-size: 0.8rem;
+        padding: 8px 6px;
+    }
+
+    main {
+        width: 92%;
+        margin-top: 140px;
+    }
+}
+
+/* Ajustements des effets hover pour petits écrans */
+@media screen and (max-width: 480px) {
+    .menu a:hover {
+        font-size: 0.85rem;
+        padding: 6px 4px;
+    }
+
+    .certification-item {
+        width: 150px; /* Plus petit sur mobile */
+    }
+
+    .tp-item {
+        max-width: 150px; /* Plus petit sur mobile */
+    }
+
+    .download-button {
+        padding: 10px 15px;
+        font-size: 0.9em;
+    }
+}
+
+/* Pour les mobiles */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    .menu {
+        width: 85%;
+    }
+
+    .menu a {
+        font-size: 0.9rem;
+        padding: 12px 10px;
+    }
+
+    main {
+        width: 85%;
+        margin-top: 130px;
+    }
+}
+
+/* Pour les petits écrans d'ordinateur */
+@media screen and (min-width: 769px) and (max-width: 1024px) {
+    .menu {
+        width: 80%;
+    }
+
+    .menu a {
+        font-size: 1rem;
+        padding: 15px 12px;
+    }
+}
+
+/* Pour les grands écrans */
+@media screen and (min-width: 1025px) {
+    .menu {
+        width: 70%;
+        max-width: 1200px;
+    }
+
+    .menu a {
+        font-size: 1rem;
+        padding: 15px 20px;
+    }
+}
+
+/* Ajustements pour les effets hover du menu */
+@media screen and (max-width: 768px) {
+    .menu a:hover {
+        font-size: 1rem; /* Effet de zoom réduit sur mobile */
+        padding: 8px 8px;
+    }
+}
+
+@media screen and (min-width: 769px) {
+    .menu a:hover {
+        font-size: 1.2rem;
+        padding: 10px 10px;
+    }
+}
+
+main {
+    margin-top: 120px;
+    width: 80%;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+section {
+    margin-bottom: 50px;
+}
+
+h2 {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+p {
+    font-size: 1.2em;
+    line-height: 1.6;
+}
+
+#cv h2 {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#cv p {
+    font-size: 1.2em;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.downloads {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+}
+
+.download-button {
+    display: inline-block;
+    padding: 15px 30px;
+    background-color: var(--input-color);
+    color: white;
+    text-align: center;
+    font-size: 1em;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.download-button:hover {
+    background-color: #00B0FF;
+}
+
+#motivation {
+    margin: 20px;
+    padding: 20px;
+    background-color: #E3F2FD;
+    border-radius: 10px;
+    font-size: 1.1em;
+    line-height: 1.6;
+}
+
+#motivation h2 {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#motivation p {
+    margin-bottom: 15px;
+    text-align: justify;
+}
+
+#motivation p:last-child {
+    font-weight: bold;
+    text-align: right;
+}
+
+#certifications {
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+    font-size: 1.1em;
+}
+
+#certifications h2 {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+#certifications p {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.certifications-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.certification-item {
+    width: 200px;
+    text-align: center;
+    margin: 20px;
+}
+
+.certification-item img {
+    width: 110%;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.certification-item img:hover {
+    transform: scale(1.05);
+}
+
+.certification-item p {
+    font-size: 1em;
+    margin-top: 5px;
+}
+
+#tp-en-classe {
+    text-align: center;
+    padding: 20px;
+}
+
+.tp-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.tp-item {
+    max-width: 200px;
+    text-align: center;
+}
+
+.tp-image {
+    width: 100%;
+    max-width: 200px;
+    height: auto;
+    border-radius: 8px;
+    transition: transform 0.3s ease;
+}
+
+.tp-link:hover .tp-image {
+    transform: scale(1.05);
+}
+
+.tp-description {
+    margin-top: 10px;
+    font-size: 1em;
+    color: var(--title-color);
+    transition: color 0.3s; /* Transition pour la couleur */
+}
