@@ -125,6 +125,15 @@ h1, h2, h3, h4, p, ul {
 }
   
 
+iframe.gdrive {
+    width: 500px;
+    height: 300px;
+    border-radius: 0.5rem;
+    justify-self: center;
+    border-color: transparent;
+    border-radius: 10px;
+  }
+
 .button.button--flex {
     display: flex;
     justify-content: center; /* Centre horizontalement */
@@ -279,6 +288,19 @@ header h1 {
         font-size: 0.9em;
     }
 }
+
+@media screen and (max-width: 767px) {
+
+    iframe.gdrive {
+      width: 300px;
+      height: 200px;
+      border-radius: 0.5rem;
+      justify-self: center;
+      border-color: transparent;
+      border-radius: 10px;
+    }
+  
+  }
 
 /* Pour les mobiles */
 @media screen and (min-width: 481px) and (max-width: 768px) {
@@ -501,4 +523,33 @@ p {
     font-size: 1em;
     color: var(--title-color);
     transition: color 0.3s; /* Transition pour la couleur */
+}
+
+/* Styles pour la section Projets en classe */
+.projets-container {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.projet-item {
+    width: 200px; /* Largeur de chaque projet */
+    text-align: center;
+    margin: 20px;
+    transition: transform 0.3s ease; /* Transition pour l'animation */
+}
+
+.projet-item:hover {
+    transform: scale(1.05); /* Agrandissement au survol */
+}
+
+.tp-image {
+    width: 100%; /* S'assure que l'image prend toute la largeur de l'élément */
+    border-radius: 8px; /* Coins arrondis pour les images */
+    transition: transform 0.3s ease; /* Transition pour l'animation */
+}
+
+.tp-image:hover {
+    transform: scale(1.05); /* Agrandissement au survol */
 }
