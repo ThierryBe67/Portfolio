@@ -525,31 +525,88 @@ p {
     transition: color 0.3s; /* Transition pour la couleur */
 }
 
-/* Styles pour la section Projets en classe */
+/* Styles améliorés pour la section Projets en classe */
 .projets-container {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    margin: 20px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    margin: 30px 0;
 }
 
 .projet-item {
-    width: 200px; /* Largeur de chaque projet */
-    text-align: center;
-    margin: 20px;
-    transition: transform 0.3s ease; /* Transition pour l'animation */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    border-radius: 10px;
+    background-color: var(--container-color);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    margin-bottom: 30px;
 }
 
 .projet-item:hover {
-    transform: scale(1.05); /* Agrandissement au survol */
+    transform: translateY(-5px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.15);
 }
 
-.tp-image {
-    width: 100%; /* S'assure que l'image prend toute la largeur de l'élément */
-    border-radius: 8px; /* Coins arrondis pour les images */
-    transition: transform 0.3s ease; /* Transition pour l'animation */
+.video-container {
+    width: 100%;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    padding-top: 56.25%; /* Pour maintenir un ratio 16:9 */
 }
 
-.tp-image:hover {
-    transform: scale(1.05); /* Agrandissement au survol */
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.projet-item h3 {
+    font-size: var(--h3-font-size);
+    margin: 10px 0;
+    color: var(--title-color);
+    text-align: center;
+}
+
+.projet-item p {
+    font-size: var(--normal-font-size);
+    text-align: center;
+    color: var(--text-color);
+}
+
+/* Mise à jour des media queries pour la section des projets */
+@media screen and (max-width: 767px) {
+    .projets-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .projet-item {
+        width: 100%;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .projets-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Supprimer ces styles s'ils existent car nous les remplaçons */
+iframe.gdrive {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
 }
